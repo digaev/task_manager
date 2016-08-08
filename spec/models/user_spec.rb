@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   it { should have_secure_password }
 
   describe 'schema' do
+    it { should have_db_column(:admin).with_options null: false, default: false }
     it { should have_db_column :password_digest }
     it { should have_db_index :email }
   end
