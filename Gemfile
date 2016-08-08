@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails', '~> 4.2'
+gem 'haml'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jwt'
@@ -21,6 +22,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
 end
 
