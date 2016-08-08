@@ -2,7 +2,7 @@ class Web::UsersController < Web::ApplicationController
   def create
     @user = User.create(params.require(:user).permit(:email, :password))
     if @user.valid?
-      redirect_to root_url
+      redirect_to user_tasks_path(@user)
     else
       render :new
     end

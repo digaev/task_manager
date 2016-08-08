@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Web::UsersController, type: :controller do
   describe '#create' do
     it 'creates user with permitted params' do
-      user = build :user
+      user = create :user
       params = {
         email: user.email,
         password: user.password
@@ -17,13 +17,13 @@ RSpec.describe Web::UsersController, type: :controller do
 
     context 'when create succeeds' do
       before do
-        @user = build :user
+        @user = create :user
         allow(User).to receive(:create).and_return @user
       end
 
       it 'redirects to web#welcome' do
         post :create, params: { user: { email: @user.email, password: @user.password } }
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(user_tasks_path(@user))
       end
     end
 
