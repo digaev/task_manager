@@ -7,7 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 
 # Require all helpers.
-Dir[Rails.root.join("spec/helpers/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/helpers/*_helper.rb")].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
