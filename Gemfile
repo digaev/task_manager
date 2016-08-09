@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'active_attr'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails', '~> 4.2'
 gem 'haml'
