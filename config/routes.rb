@@ -7,5 +7,7 @@ Rails.application.routes.draw do
         resources :tasks
       end
     end
+
+    resources :sessions, only: [:new, :create]
   end
 end
