@@ -26,7 +26,6 @@ RSpec.describe Web::UsersController, type: :controller do
 
         post :create, params: { user: { email: @user.email, password: @user.password } }
         expect(response).to redirect_to(user_tasks_path(@user))
-        expect(session[:user_token]).to eq(@user.token)
       end
     end
 
