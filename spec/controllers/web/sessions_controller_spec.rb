@@ -55,4 +55,12 @@ RSpec.describe Web::SessionsController, type: :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    it 'destroys user session' do
+      expect(controller).to receive(:destroy_user_session!)
+      delete :destroy
+      expect(response).to redirect_to(root_url)
+    end
+  end
 end

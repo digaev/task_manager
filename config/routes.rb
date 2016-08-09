@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :sessions, only: [:new, :create, :destroy]
+    resources :sessions, only: [:new, :create] do
+      delete :destroy, on: :collection
+    end
   end
 end

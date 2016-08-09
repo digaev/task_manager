@@ -14,4 +14,9 @@ class Web::SessionsController < Web::ApplicationController
     end
     render :new
   end
+
+  def destroy
+    destroy_user_session!
+    redirect_to root_url
+  end
 end
