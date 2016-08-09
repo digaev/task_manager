@@ -21,7 +21,9 @@ RSpec.describe Web::UsersController, type: :controller do
         allow(User).to receive(:create).and_return @user
       end
 
-      it 'redirects to web#welcome' do
+      it 'creates session and redirects to web/users/tasks#index' do
+        expect(controller).to receive(:create_user_session!).with(@user)
+
         post :create, params: { user: { email: @user.email, password: @user.password } }
         expect(response).to redirect_to(user_tasks_path(@user))
       end
