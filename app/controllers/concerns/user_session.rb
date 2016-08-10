@@ -6,4 +6,12 @@ module UserSession
   def destroy_user_session!
     session.delete(:user_token)
   end
+
+  def user_id_from_token
+    token = session[:user_token]
+    payload = Token.decode(token)
+    payload['user_id']
+  rescue
+    raise Exceptions::InvalidAuthToken
+  end
 end
