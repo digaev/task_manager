@@ -13,6 +13,10 @@ RSpec.describe User, type: :model do
     it { should have_db_index :email }
   end
 
+  describe 'relations' do
+    it { should have_many(:tasks).dependent(:destroy) }
+  end
+
   describe 'validations' do
     subject { build :user }
 
