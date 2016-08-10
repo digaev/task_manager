@@ -1,2 +1,2 @@
-class Web::Users::TasksController < ApplicationController
+class Web::Users::TasksController < Web::ApplicationController
 end
