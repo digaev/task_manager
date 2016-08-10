@@ -1,4 +1,4 @@
-class Web::TasksController < ApplicationController
+class Web::TasksController < Web::ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_task, only: [:edit, :update]
 
