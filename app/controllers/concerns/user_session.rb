@@ -7,6 +7,12 @@ module UserSession
     session.delete(:user_token)
   end
 
+  def authenticate_user!
+    user_id_from_token
+  rescue
+    redirect_to new_session_path
+  end
+
   def user_id_from_token
     token = session[:user_token]
     payload = Token.decode(token)
