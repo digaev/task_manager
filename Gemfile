@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'active_attr'
 gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
