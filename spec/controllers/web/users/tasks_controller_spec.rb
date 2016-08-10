@@ -63,4 +63,18 @@ RSpec.describe Web::Users::TasksController, type: :controller do
       end
     end
   end
+
+  describe '#edit' do
+    before do
+      @user = create :user
+      @task = create :task, user: @user
+      controller.create_user_session!(@user)
+      allow(controller).to receive(:authenticate_user!)
+    end
+
+    it 'finds task from params and user from token' do
+      expect(Task).to receive(:find_by_user_id_and_id!).with(@user.id, @task.id).and_return(@task)
+      get :edit, params: { id: @task.id, user_id: @user.id }
+    end
+  end
 end
