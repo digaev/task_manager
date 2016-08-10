@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:new, :create] do
       scope module: :users do
-        resources :tasks, except: [:show]
+        resources :tasks, only: [:index]
       end
     end
 
