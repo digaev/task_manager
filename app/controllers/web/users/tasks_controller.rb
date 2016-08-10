@@ -20,6 +20,16 @@ class Web::Users::TasksController < Web::ApplicationController
     end
   end
 
+  def update
+    if @task.update_attributes(params.require(:task).permit(
+      :name, :description
+    ))
+      redirect_to user_tasks_path(@task.user)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_task

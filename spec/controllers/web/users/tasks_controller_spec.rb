@@ -77,4 +77,34 @@ RSpec.describe Web::Users::TasksController, type: :controller do
       get :edit, params: { id: @task.id, user_id: @user.id }
     end
   end
+
+  describe '#update' do
+    before do
+      @user = create :user
+      @task = create :task, user: @user
+      controller.create_user_session!(@user)
+      allow(controller).to receive(:authenticate_user!)
+    end
+
+    it 'finds task from params and user from token' do
+      expect(Task).to receive(:find_by_user_id_and_id!).with(@user.id, @task.id).and_return(@task)
+      expect(@task).to receive(:update_attributes).and_return(true)
+
+      patch :update, params: { id: @task.id, user_id: @user.id, task: { name: '1', description: '2' } }
+    end
+
+    context 'when task is found and updated' do
+      it 'redirects to web/user/tasks#index' do
+        patch :update, params: { id: @task.id, user_id: @user.id, task: { name: '1', description: '2' } }
+        expect(response).to redirect_to(user_tasks_path(@user))
+      end
+    end
+
+    context 'when task update failed' do
+      it 'renders #edit' do
+        patch :update, params: { id: @task.id, user_id: @user.id, task: { name: '', description: '' } }
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end
