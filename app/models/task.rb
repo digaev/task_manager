@@ -3,6 +3,8 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
 
+  mount_uploader :attachment, TaskAttachmentUploader
+
   scope :most_recent_first, -> { order(created_at: :desc) }
 
   state_machine :initial => :new do
