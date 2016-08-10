@@ -13,4 +13,24 @@ RSpec.describe UserSession, type: :controller do
       expect(session[:user_token]).to be(nil)
     end
   end
+
+  describe '#user_id_from_token' do
+    it 'returns user_id from token' do
+      user = create :user
+      controller.create_user_session!(user)
+      expect(controller.user_id_from_token).to eq(user.id)
+    end
+
+    it 'should raise Exceptions::InvalidAuthToken' do
+      expect{controller.user_id_from_token}.to raise_error(Exceptions::InvalidAuthToken)
+    end
+  end
+
+  describe '#authenticate_user!' do
+    it 'authenticates user' do
+      user = create :user
+      controller.create_user_session!(user)
+      expect(controller.authenticate_user!).to eq(user.id)
+    end
+  end
 end
