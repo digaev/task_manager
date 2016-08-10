@@ -1,6 +1,6 @@
 class Web::Users::TasksController < Web::ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update]
+  before_action :set_task, only: [:edit, :update]
 
   def index
     @tasks = Task.includes(:user)
