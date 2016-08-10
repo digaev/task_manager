@@ -1,5 +1,6 @@
 class Web::Users::TasksController < Web::ApplicationController
   before_action :authenticate_user!
+  before_action :set_task, only: [:show, :edit, :update]
 
   def index
     @tasks = Task.includes(:user)
@@ -17,5 +18,11 @@ class Web::Users::TasksController < Web::ApplicationController
     else
       render :new
     end
+  end
+
+  private
+
+  def set_task
+    @task = Task.find_by_user_id_and_id!(user_id_from_token, params[:id].to_i)
   end
 end
