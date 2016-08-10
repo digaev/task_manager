@@ -8,7 +8,7 @@ module UserSession
   end
 
   def authenticate_user!
-    user_id_from_token
+    @user = User.find(user_id_from_token)
   rescue
     redirect_to new_session_path
   end
