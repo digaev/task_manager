@@ -23,5 +23,8 @@ module TaskManager
     # -- all .rb files in that directory are automatically loaded.
 
     config.eager_load_paths << Rails.root.join('lib')
+
+    # Bower components
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
   end
 end
