@@ -16,11 +16,11 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} TaskManager
+          = link_to root_url, class: 'navbar-brand' do
+            TaskManager
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "#"} Home
+            = nav_link 'Home', root_url
 
     .container
       = yield
