@@ -1,6 +1,6 @@
 class Web::TasksController < Web::ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_task, only: [:edit, :update]
+  before_action :set_task, only: [:show, :edit, :update]
 
   def create
     @task = Task.new(params.require(:task).permit(

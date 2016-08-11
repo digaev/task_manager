@@ -136,4 +136,50 @@ RSpec.describe Web::TasksController, type: :controller do
       end
     end
   end
+
+  describe '#show' do
+    context 'when user is not admin' do
+      before do
+        @user = create :user
+
+        controller.create_user_session!(@user)
+        expect(controller).to receive(:authenticate_user!).and_return(@user)
+        controller.instance_variable_set(:@user, @user)
+      end
+
+      it 'can view own tasks' do
+        task = create :task, user: @user
+        get :show, params: { id: task.id }
+        expect(response.status).to eq(200)
+        expect(response).to render_template(:show)
+      end
+
+      it 'can not view tasks which not owned by user' do
+        task = create :task
+        expect(@user.id != task.user_id).to be(true)
+
+        get :show, params: { id: task.id }
+        expect(response.status).to eq(404)
+      end
+    end
+
+    context 'when user is admin' do
+      before do
+        @admin = create :user, admin: true
+
+        controller.create_user_session!(@admin)
+        expect(controller).to receive(:authenticate_user!).and_return(@admin)
+        controller.instance_variable_set(:@user, @admin)
+      end
+
+      it 'can view any tasks' do
+        task = create :task
+        expect(@admin.id != task.user_id).to be(true)
+
+        get :show, params: { id: task.id }
+        expect(response.status).to eq(200)
+        expect(response).to render_template(:show)
+      end
+    end
+  end
 end
