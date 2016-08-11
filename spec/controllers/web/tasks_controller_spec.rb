@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Web::TasksController, type: :controller do
+  describe '#index' do
+    it 'lists all tasks' do
+      user = create :user
+      create_list :task, 5, user: user
+
+      allow(Task).to receive(:includes).with(:user)
+      expect(Task.count).to eq(5)
+    end
+  end
+
   describe '#create' do
     before do
       @user = create :user

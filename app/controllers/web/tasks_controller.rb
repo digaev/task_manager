@@ -2,6 +2,10 @@ class Web::TasksController < Web::ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_task, only: [:show, :edit, :update]
 
+  def index
+    @tasks = Task.includes(:user).order(created_at: :desc)
+  end
+
   def create
     @task = Task.new(params.require(:task).permit(
       :name, :description, :state, :attachment
