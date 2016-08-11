@@ -1,7 +1,10 @@
 class Task < ApplicationRecord
+  STATES = ['new', 'started', 'finished']
+
   belongs_to :user
 
   validates :name, presence: true
+  validates :state, inclusion: { in: STATES }
 
   mount_uploader :attachment, TaskAttachmentUploader
 

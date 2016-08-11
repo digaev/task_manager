@@ -20,5 +20,6 @@ RSpec.describe Task, type: :model do
     subject { build :task }
 
     it { should validate_presence_of :name }
+    it { should validate_inclusion_of(:state).in_array(Task::STATES) }
   end
 end
