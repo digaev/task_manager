@@ -4,7 +4,7 @@ class Web::TasksController < Web::ApplicationController
 
   def create
     @task = Task.new(params.require(:task).permit(
-      :name, :description
+      :name, :description, :state, :attachment
     ))
     @task.user_id = user_id_from_token
     if @task.save
@@ -16,7 +16,7 @@ class Web::TasksController < Web::ApplicationController
 
   def update
     if @task.update_attributes(params.require(:task).permit(
-      :name, :description
+      :name, :description, :state, :attachment
     ))
       redirect_to user_tasks_path(@task.user)
     else
