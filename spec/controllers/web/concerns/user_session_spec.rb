@@ -30,7 +30,7 @@ RSpec.describe UserSession, type: :controller do
     it 'authenticates user' do
       user = create :user
       controller.create_user_session!(user)
-      expect(controller.authenticate_user!).to eq(user)
+      expect(controller.authenticate_user!).to eq(user.id)
     end
   end
 
