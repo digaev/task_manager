@@ -1,0 +1,19 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th ID
+      %th User
+      %th Name
+      %th Description
+      %th State
+      %th Date
+
+  - @tasks.each do |t|
+    %tbody
+      %tr
+        %td= t.id
+        %td= t.user.email
+        %td= t.name
+        %td= t.description
+        %td= t.state
+        %td= l(t.created_at, format: :long)
