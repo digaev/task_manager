@@ -33,4 +33,12 @@ RSpec.describe UserSession, type: :controller do
       expect(controller.authenticate_user!).to eq(user)
     end
   end
+
+  describe '#current_user' do
+    it 'returns currently logged user' do
+      user = create :user
+      controller.create_user_session!(user)
+      expect(controller.current_user).to eq(user)
+    end
+  end
 end
