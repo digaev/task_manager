@@ -1,0 +1,7 @@
+.well
+  = simple_form_for(@form, as: :session, url: sessions_path) do |f|
+    %legend Sign in
+
+    = f.input :email
+    = f.input :password
+    = f.button :submit
