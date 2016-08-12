@@ -7,6 +7,8 @@
       %th Description
       %th State
       %th Date
+      - if current_user && current_user.admin?
+        %th Edit
 
   - @tasks.each do |t|
     %tbody
@@ -17,3 +19,5 @@
         %td= t.description
         %td= t.state
         %td= l(t.created_at, format: :long)
+        - if current_user && current_user.admin?
+          %td= link_to 'Edit', edit_task_path(t)
