@@ -32,10 +32,10 @@ class Web::TasksController < Web::ApplicationController
 
   def set_task
     @task =
-      if @user.admin?
+      if current_user.admin?
         Task.find(params[:id])
       else
-        Task.find_by_id_and_user_id!(params[:id].to_i, @user.id)
+        Task.find_by_id_and_user_id!(params[:id], current_user.id)
       end
   end
 end

@@ -64,7 +64,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@user)
         expect(controller).to receive(:authenticate_user!).and_return(@user)
-        controller.instance_variable_set(:@user, @user)
       end
 
       it 'can edit own tasks' do
@@ -89,7 +88,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@admin)
         expect(controller).to receive(:authenticate_user!).and_return(@admin)
-        controller.instance_variable_set(:@user, @admin)
       end
 
       it 'can edit any tasks' do
@@ -110,7 +108,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@user)
         expect(controller).to receive(:authenticate_user!).and_return(@user)
-        controller.instance_variable_set(:@user, @user)
       end
 
       it 'can update own tasks' do
@@ -134,7 +131,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@admin)
         expect(controller).to receive(:authenticate_user!).and_return(@admin)
-        controller.instance_variable_set(:@user, @admin)
       end
 
       it 'can update any tasks' do
@@ -154,7 +150,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@user)
         expect(controller).to receive(:authenticate_user!).and_return(@user)
-        controller.instance_variable_set(:@user, @user)
       end
 
       it 'can view own tasks' do
@@ -179,7 +174,6 @@ RSpec.describe Web::TasksController, type: :controller do
 
         controller.create_user_session!(@admin)
         expect(controller).to receive(:authenticate_user!).and_return(@admin)
-        controller.instance_variable_set(:@user, @admin)
       end
 
       it 'can view any tasks' do
