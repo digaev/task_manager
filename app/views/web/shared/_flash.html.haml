@@ -1,0 +1,13 @@
+- if flash[flash_type]
+  - flash.discard(flash_type)
+
+  .alert.alert-dismissible{:role => "alert", :class => "alert-#{ alert_class }"}
+    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+      %span{"aria-hidden" => "true"} &times;
+    %strong Oh snap!
+    - if flash[flash_type].is_a?(Array)
+      %ul
+        - flash[flash_type].each do |msg|
+          %li= msg
+    - else
+      %p= flash[flash_type]

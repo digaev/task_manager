@@ -42,7 +42,14 @@
               = f.button 'Sign in', type: :submit, class: 'btn btn-success'
 
     .container
-      = yield
+      .row
+        - if flash.any?
+          .col-md-12
+            = render partial: 'web/shared/flash', locals: { flash_type: :error, alert_class: :danger }
+            = render partial: 'web/shared/flash', locals: { flash_type: :notice, alert_class: :success }
+
+        .col-md-12
+          = yield
 
     %script{ :src => "/assets/jquery/dist/jquery.min.js" }
     %script{ :src => "/assets/jquery-ujs/src/rails.js" }
