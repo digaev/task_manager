@@ -16,7 +16,7 @@ module UserSession
   def user_id_from_token
     token = session[:user_token]
     payload = Token.decode(token)
-    payload['user_id']
+    payload['user_id'].to_i
   rescue
     raise Exceptions::InvalidAuthToken
   end
