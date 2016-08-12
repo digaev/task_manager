@@ -39,6 +39,7 @@ RSpec.describe Web::SessionsController, type: :controller do
 
         post :create, params: { session: { email: @user.email, password: @user.password } }
         expect(response).to redirect_to(user_tasks_path(@user))
+        expect(controller).to set_flash[:notice]
       end
     end
 
@@ -52,6 +53,7 @@ RSpec.describe Web::SessionsController, type: :controller do
       it 'renders #new' do
         post :create, params: { session: { email: @user.email, password: @user.password } }
         expect(response).to render_template(:new)
+        expect(controller).to set_flash[:error]
       end
     end
   end
