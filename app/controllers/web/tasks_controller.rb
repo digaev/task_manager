@@ -1,6 +1,6 @@
 class Web::TasksController < Web::ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_task, only: [:show, :edit, :update]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.includes(:user).order(created_at: :desc)
@@ -26,6 +26,11 @@ class Web::TasksController < Web::ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to (request.referer || tasks_path)
   end
 
   private

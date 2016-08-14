@@ -186,4 +186,18 @@ RSpec.describe Web::TasksController, type: :controller do
       end
     end
   end
+
+  describe '#destroy' do
+    before do
+      @task = create :task
+      controller.create_user_session!(@task.user)
+      expect(controller).to receive(:authenticate_user!)
+    end
+
+    it 'destroys task' do
+      expect {
+        delete :destroy, params: { id: @task.id }
+      }.to change(Task, :count).by(-1)
+    end
+  end
 end
