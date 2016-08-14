@@ -10,6 +10,7 @@
 
 - if @task.attachment.file
   - if @task.attachment.file.content_type.start_with? 'image'
-    = image_tag @task.attachment_url(:thumb)
+    = link_to @task.attachment_url do
+      = image_tag @task.attachment_url(:thumb)
   - else
     = link_to @task.attachment.file.filename, @task.attachment_url
