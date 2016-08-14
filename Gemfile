@@ -4,6 +4,7 @@ gem 'active_attr'
 gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
+gem 'faker'
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt'
@@ -11,11 +12,11 @@ gem 'mini_magick'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
+gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'state_machines-activerecord'
 gem 'uglifier', '>= 1.3.0'
-gem 'faker'
 
 # gem 'capistrano-rails', group: :development
 
