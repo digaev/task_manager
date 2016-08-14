@@ -18,7 +18,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ":memory:"
+  adapter: postgresql
+  database: task_manager_test
 
 production:
   <<: *default
