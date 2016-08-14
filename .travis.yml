@@ -4,7 +4,7 @@ rvm:
 env:
   - DB=sqlite
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bin/rails db:migrate RAILS_ENV=test --trace
   - bundle exec rake db:test:prepare --trace
   - bundle exec rake
 bundler_args: --binstubs=./bundler_stubs
