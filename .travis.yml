@@ -5,15 +5,11 @@ sudo: false
 rvm:
   - ruby-head
 
-env:
-  - DB=sqlite3
-
 services:
   - postgresql
 
 before_script:
   - "psql -c 'create database task_manager_test;' -U postgres"
-  - "cp config/database.travis.yml config/database.yml"
 
 script:
   - bundle exec rake db:schema:load
