@@ -19,10 +19,8 @@ class Web::SessionsController < Web::ApplicationController
   end
 
   def destroy
-    if user_id_from_token
-      flash[:notice] = 'You are successfully signed out.'
-      destroy_user_session!
-    end
+    flash[:notice] = 'You are successfully signed out.' if user_id_from_token
+    destroy_user_session!
     redirect_to root_url
   end
 end

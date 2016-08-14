@@ -59,8 +59,17 @@ RSpec.describe Web::SessionsController, type: :controller do
   end
 
   describe '#destroy' do
+    before do
+      user = create :user
+      params = {
+        email: user.email,
+        password: user.password
+      }
+      post :create, params: { session: params }
+    end
+
     it 'destroys user session' do
-      expect(controller).to receive(:destroy_user_session!)
+      allow(controller).to receive(:destroy_user_session!)
       delete :destroy
       expect(response).to redirect_to(root_url)
     end
