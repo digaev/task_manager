@@ -1,6 +1,6 @@
 class Web::TasksController < Web::ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :change_state]
 
   def index
     @tasks = Task.includes(:user).order(created_at: :desc)
@@ -31,6 +31,14 @@ class Web::TasksController < Web::ApplicationController
   def destroy
     @task.destroy
     redirect_to (request.referer || tasks_path)
+  end
+
+  def change_state
+    @task.update_attributes(state: params[:state])
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+      format.js { render js: 'document.location.reload();' }
+    end
   end
 
   private

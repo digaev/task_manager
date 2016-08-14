@@ -19,10 +19,16 @@
           %td= t.user.email
         %td= t.name
         %td= t.description
-        %td.text-center= t.state
+        %td.text-center.col-md-2
+          - if columns[:action]
+            .btn-group.btn-group-xs
+              - Task::STATES.each do |state|
+                = link_to state, change_state_task_path(t, state: state), remote: true, method: :patch, class: "btn btn-default#{ (' active' if t.state == state) }"
+          - else
+            = t.state
         %td.text-center= l(t.created_at, format: :long)
         - if columns[:action]
-          %td.text-center
+          %td.text-center.col-md-2
             .btn-group.btn-group-xs
               = link_to 'Show', task_path(t), class: 'btn btn-default'
               = link_to 'Edit', edit_task_path(t), class: 'btn btn-default'

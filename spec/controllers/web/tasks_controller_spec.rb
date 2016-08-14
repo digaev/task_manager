@@ -200,4 +200,20 @@ RSpec.describe Web::TasksController, type: :controller do
       }.to change(Task, :count).by(-1)
     end
   end
+
+  describe '#change_state' do
+    before do
+      @task = create :task
+      controller.create_user_session!(@task.user)
+      expect(controller).to receive(:authenticate_user!)
+    end
+
+    it 'changes task state' do
+      state = Task::STATES.sample
+      patch :change_state, params: { id: @task.id, state: state }
+
+      @task.reload
+      expect(@task.state).to eq(@task.state)
+    end
+  end
 end
