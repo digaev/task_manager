@@ -6,7 +6,7 @@ env:
   - DB=mysql
   - DB=postgresql
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - rake db:schema:load
   - bundle exec rake db:test:prepare
   - bundle exec rake
 before_script:
