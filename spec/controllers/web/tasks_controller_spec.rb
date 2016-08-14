@@ -213,7 +213,7 @@ RSpec.describe Web::TasksController, type: :controller do
       patch :change_state, params: { id: @task.id, state: state }
 
       @task.reload
-      expect(@task.state).to eq(@task.state)
+      expect(@task.state).to eq(state)
     end
   end
 end
