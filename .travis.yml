@@ -3,14 +3,8 @@ rvm:
   - ruby-head
 env:
   - DB=sqlite
-  - DB=mysql
-  - DB=postgresql
 script:
-  - rake db:schema:load
+  - bundle exec rake db:schema:load --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
-before_script:
-  - cp config/database.travis.yml config/database.yml
-  - mysql -e 'create database task_manager_test'
-  - psql -c 'create database task_manager_test' -U postgres
 bundler_args: --binstubs=./bundler_stubs
