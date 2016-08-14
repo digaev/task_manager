@@ -1,0 +1,9 @@
+.well
+  = simple_form_for(@task, html: { multipart: true }) do |f|
+    %legend Edit Task
+
+    = f.input :name
+    = f.input :description
+    = f.input :state, collection: Task::STATES
+    = f.input :attachment
+    = f.button :submit

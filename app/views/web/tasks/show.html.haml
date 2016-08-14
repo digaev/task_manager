@@ -1,0 +1,15 @@
+%h1 Task: #{ @task.id }
+
+%ul
+  %li ID: #{ @task.id }
+  - if current_user && current_user.admin?
+    %li User: #{ @task.user.email }
+  %li Name: #{ @task.name }
+  %li Description: #{ @task.description }
+  %li State: #{ @task.state }
+
+- if @task.attachment.file
+  - if @task.attachment.file.content_type.start_with? 'image'
+    = image_tag @task.attachment_url(:thumb)
+  - else
+    = link_to @task.attachment.file.filename, @task.attachment_url
