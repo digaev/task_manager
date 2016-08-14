@@ -1,3 +1,15 @@
 language: ruby
 rvm:
   - ruby-head
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+before_script:
+  - mysql -e 'create database task_manager_test'
+  - psql -c 'create database task_manager_test' -U postgres
+bundler_args: --binstubs=./bundler_stubs
