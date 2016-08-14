@@ -3,7 +3,7 @@ class Web::Users::TasksController < Web::ApplicationController
 
   def index
     @tasks = Task.includes(:user)
-      .where(user_id: params[:user_id])
+      .where(user_id: params[:user_id].to_i)
       .most_recent_first
   end
 end
