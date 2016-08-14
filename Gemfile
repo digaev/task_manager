@@ -12,7 +12,6 @@ gem 'mini_magick'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.0'
-gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'state_machines-activerecord'
