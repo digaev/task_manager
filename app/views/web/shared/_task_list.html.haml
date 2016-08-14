@@ -1,0 +1,29 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.text-center ID
+      - if columns[:email]
+        %th User
+      %th Name
+      %th Description
+      %th.text-center State
+      %th.text-center Date
+      - if columns[:action]
+        %th.text-center Action
+
+  - tasks.each do |t|
+    %tbody
+      %tr
+        %td.text-center= t.id
+        - if columns[:email]
+          %td= t.user.email
+        %td= t.name
+        %td= t.description
+        %td.text-center= t.state
+        %td.text-center= l(t.created_at, format: :long)
+        - if columns[:action]
+          %td.text-center
+            .btn-group.btn-group-xs
+              = link_to 'Show', task_path(t), class: 'btn btn-default'
+              = link_to 'Edit', edit_task_path(t), class: 'btn btn-default'
+              = link_to 'Delete', task_path(t), method: :delete, data: { confirm: 'Delete task?' }, class: 'btn btn-default'

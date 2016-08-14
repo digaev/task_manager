@@ -1,0 +1,1 @@
+= render partial: 'web/shared/task_list', locals: { tasks: @tasks, columns: { action: current_user && current_user.id == params[:user_id].to_i } }

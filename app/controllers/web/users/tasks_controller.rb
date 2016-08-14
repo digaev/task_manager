@@ -1,9 +1,9 @@
 class Web::Users::TasksController < Web::ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @tasks = Task.includes(:user)
-      .where(user_id: user_id_from_token)
+      .where(user_id: params[:user_id])
       .most_recent_first
   end
 end
