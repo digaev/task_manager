@@ -15,13 +15,13 @@ gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'state_machines-activerecord'
 gem 'uglifier', '>= 1.3.0'
+gem 'faker'
 
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
 end
 
