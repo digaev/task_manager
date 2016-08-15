@@ -28,6 +28,7 @@ end
 group :test do
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
+  gem 'simplecov'
 end
 
 group :development do
