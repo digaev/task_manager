@@ -11,3 +11,7 @@ rake db:seed
 # Create one fake task
 rake fake_task:create
 ```
+
+## Heroku
+
+https://shielded-basin-64587.herokuapp.com/
