@@ -23,7 +23,7 @@
           - if columns[:action]
             .btn-group.btn-group-xs
               - Task::STATES.each do |state|
-                = link_to state, change_state_task_path(t, state: state), remote: true, method: :patch, class: "btn btn-default#{ (' active' if t.state == state) }"
+                = link_to state, task_path(t, task: { state: state }), remote: true, method: :patch, class: "btn btn-default#{ (' active' if t.state == state) }"
           - else
             = t.state
         %td.text-center= l(t.created_at, format: :long)

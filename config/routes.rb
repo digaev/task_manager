@@ -8,13 +8,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tasks do
-      match '/change_state/:state',
-        action: :change_state,
-        as: :change_state,
-        via: [:patch, :put],
-        on: :member
-    end
+    resources :tasks
 
     resources :sessions, only: [:new, :create] do
       delete :destroy, on: :collection
