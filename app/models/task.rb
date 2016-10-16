@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  STATES = ['new', 'started', 'finished']
+  STATES = %w(new started finished).freeze
 
   belongs_to :user
 
@@ -10,7 +10,7 @@ class Task < ApplicationRecord
 
   scope :most_recent_first, -> { order(created_at: :desc) }
 
-  state_machine :initial => :new do
+  state_machine initial: :new do
     event :start do
       transition any => :started
     end

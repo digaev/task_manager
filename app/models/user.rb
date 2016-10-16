@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   def token
-    Token.encode(user_id: self.id)
+    Token.encode(user_id: id)
   end
 end

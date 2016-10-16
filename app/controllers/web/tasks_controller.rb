@@ -23,7 +23,7 @@ class Web::TasksController < Web::ApplicationController
         if success
           render js: 'document.location.reload();'
         else
-          render js: "alert(\"Whoops!\\n\\n#{ @task.errors.full_messages.join('\n') }\");"
+          render js: "alert(\"Whoops!\\n\\n#{@task.errors.full_messages.join('\n')}\");"
         end
       end
       format.html do
@@ -38,7 +38,7 @@ class Web::TasksController < Web::ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to (request.referer || tasks_path)
+    redirect_to(request.referer || tasks_path)
   end
 
   private
