@@ -8,3 +8,6 @@ AllCops:
     - script/**
 Documentation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
